@@ -5,6 +5,9 @@ const urls = [
   'http://www.smokeballdev.com/arnie1',
   'http://www.smokeballdev.com/arnie2',
   'http://www.smokeballdev.com/arnie3',
+  'http://www.smokeballdev.com/arnie4',
+  'http://www.smokeballdev.com/arnie5',
+  'http://www.smokeballdev.com/arnie6',
 ];
 
 test('expect no throws', () => {
@@ -13,15 +16,18 @@ test('expect no throws', () => {
 });
 
 test('responses to be correct', async () => {
-  expect.assertions(5);
+  expect.assertions(8);
 
   const results = await getArnieQuotes(urls);
   
-  expect(results.length).toBe(4);
+  expect(results.length).toBe(7);
 
   expect(results[0]).toEqual({ 'Arnie Quote': 'Get to the chopper' });
   expect(results[1]).toEqual({ 'Arnie Quote': 'MY NAME IS NOT QUAID' });
   expect(results[2]).toEqual({ 'Arnie Quote': `What's wrong with Wolfie?` });
+  expect(results[3]).toEqual({ 'FAILURE': 'Your request has been terminated' });
+  expect(results[4]).toEqual({ 'Arnie Quote': '' });
+  expect(results[3]).toEqual({ 'FAILURE': 'Your request has been terminated' });
   expect(results[3]).toEqual({ 'FAILURE': 'Your request has been terminated' });
 });
 

@@ -6,12 +6,17 @@ const urlToResponseLookup = {
   [`${urlPrefix}/arnie0`]: 'Get to the chopper',
   [`${urlPrefix}/arnie1`]: 'MY NAME IS NOT QUAID',
   [`${urlPrefix}/arnie2`]: `What's wrong with Wolfie?`,
+  [`${urlPrefix}/arnie4`]: "",
+  [`${urlPrefix}/arnie5`]: null,
+  [`${urlPrefix}/arnie6`]: undefined,
 };
 
 const httpRequestMockP = (url) => new Promise((resolve, reject) => {
   setTimeout(() => {
     const responseData = urlToResponseLookup[url];
-    if (responseData) {
+    // Note: Due to dictionary lookup null and unresolved will return error. For now let's assume that valid quotes will always be strings
+    // Bug fix: Empty string should not be error
+    if (responseData || responseData === '') {
       resolve(responseData);
     } else {
       reject(new Error('Your request has been terminated'));
